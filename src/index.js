@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./components/login_page";
-import EmployeeDashboard from "./employeeDashboard";
+import EmployeeDashboard from "./components/employeeDashboard";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -19,6 +19,7 @@ ReactDOM.render(
         <Route exact path="/EmployeeList">
           <EmployeeDashboard />
         </Route>
+        {console.log(store)}
       </Switch>
     </Router>
   </Provider>,

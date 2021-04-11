@@ -1,5 +1,5 @@
 import React from "react";
-import employeeData from "./mock/employeeData.json";
+import employeeData from "../mock/employeeData.json";
 import { makeStyles } from "@material-ui/core/styles";
 import {Table,TableBody, TableHead, TableRow,TableCell, Paper} from '@material-ui/core';
 
