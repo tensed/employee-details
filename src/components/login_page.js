@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux';
-import { login } from '../redux/reducer';
+import { connect } from "react-redux";
+import { login } from "../redux/reducer";
 import { Grid, Paper, TextField, Button, Typography } from "@material-ui/core";
 import { Redirect } from "react-router";
 
 const LoginPage = (props) => {
+  //Initializing states for respective values
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [emailValid, setEmailValid] = useState("");
@@ -18,11 +19,11 @@ const LoginPage = (props) => {
     margin: "20px auto",
   };
 
-  let {isLoginSuccess, loginError} = props;
-
+  let { isLoginSuccess, loginError } = props;
 
   function handleSubmit(e) {
     e.preventDefault();
+    //Email and Password Validations for form fields.
     setEmailValid("");
     setEmailErrorValid(false);
     setPasswordValid("");
@@ -38,9 +39,8 @@ const LoginPage = (props) => {
       setPasswordValid("Password is Required");
       setPasswordErrorValid(true);
     }
-
-     props.login(userName,password);
-
+    // Dispatching the props to the reducer.
+    props.login(userName, password);
   }
 
   return (
@@ -87,31 +87,24 @@ const LoginPage = (props) => {
             >
               Login
             </Button>
-            {loginError && !emailErrorValid && !passwordErrorValid && <div>{loginError.message}</div>}
+            {loginError && !emailErrorValid && !passwordErrorValid && (
+              <div>{loginError.message}</div>
+            )}
           </Grid>
         </Grid>
       </Paper>
       {isLoginSuccess && <Redirect to="/EmployeeList" />}
-      
     </Grid>
   );
 };
 
-const mapStateToProps = (state) => (
-{
-  
-    isLoginPending: state.isLoginPending,
-    isLoginSuccess: state.isLoginSuccess,
-    loginError: state.loginError
-  
-}
-);
-
-const mapDispatchToProps = (dispatch) => (
-{
-  
-    login: (email,password) => dispatch(login(email,password))
-  
+const mapStateToProps = (state) => ({
+  isLoginSuccess: state.isLoginSuccess,
+  loginError: state.loginError,
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(LoginPage);
+const mapDispatchToProps = (dispatch) => ({
+  login: (email, password) => dispatch(login(email, password)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

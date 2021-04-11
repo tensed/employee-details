@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./components/login_page";
 import EmployeeDashboard from "./components/employeeDashboard";
 
+//Route Definitions
 ReactDOM.render(
   <Provider store={store}>
     <Router>
@@ -19,7 +20,6 @@ ReactDOM.render(
         <Route exact path="/EmployeeList">
           <EmployeeDashboard />
         </Route>
-        {console.log(store)}
       </Switch>
     </Router>
   </Provider>,
